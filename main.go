@@ -20,9 +20,10 @@ import (
 
 // Options the command line options
 type Options struct {
-	Configuration string `short:"c" long:"configuration" description:"the configuration file"`
-	Daemon        bool   `short:"d" long:"daemon" description:"run as daemon"`
-	EnvFile       string `long:"env-file" description:"the environment file"`
+	Configuration    string `short:"c" long:"configuration" description:"the configuration file"`
+	Daemon           bool   `short:"d" long:"daemon" description:"run as daemon"`
+	EnvFile          string `long:"env-file" description:"the environment file"`
+	WorkingDirectory string `long:"work-dir" description:"the Working Directory"`
 }
 
 func init() {

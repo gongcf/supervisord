@@ -190,7 +190,10 @@ func (el *EventListener) readResult() (string, error) {
 	if err != nil {
 		return s, err
 	}
+	s = strings.Trim(s, "\n")
+	// log.Warn("readResult", s)
 	fields := strings.Fields(s)
+
 	if len(fields) == 2 && fields[0] == "RESULT" {
 		// try to get the length of result
 		n, err := strconv.Atoi(fields[1])
@@ -209,8 +212,11 @@ func (el *EventListener) readResult() (string, error) {
 				return "", err
 			}
 		}
+		log.Warn("events readResult ok:", string(b))
 		// ok, get the n bytes
 		return string(b), nil
+	} else {
+		log.Errorf("events readResult:%s=>%v", s, fields)
 	}
 	return "", fmt.Errorf("Fail to read the result")
 }
@@ -314,7 +320,7 @@ func NewEventListenerManager() *EventListenerManager {
 func (em *EventListenerManager) registerEventListener(eventListenerName string,
 	events []string,
 	listener *EventListener) {
-
+	log.Info("registerEventListener", eventListenerName, events)
 	em.namedListeners[eventListenerName] = listener
 	allEvents := make(map[string]bool)
 	for _, event := range events {
