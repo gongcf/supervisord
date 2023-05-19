@@ -383,6 +383,14 @@ func (em *EventListenerManager) EmitEvent(event Event) {
 			listener.HandleEvent(event)
 		}
 	}
+	if !strings.HasPrefix(event.GetType(), "TICK") {
+		log.WithFields(log.Fields{"event": event.GetType(), "body": event.GetBody()}).Info("process event unListener")
+		// 发送钉钉消息
+		if event.GetType() != "PROCESS_STATE_BACKOFF" && event.GetType() != "PROCESS_STATE_STARTING" {
+			msg := fmt.Sprintf("%s, %s", event.GetType(), event.GetBody())
+			DefaultEventPush().PushMsg(msg)
+		}
+	}
 }
 
 // RemoteCommunicationEvent remote communication event definition

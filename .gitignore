@@ -7,3 +7,7 @@ debug
 go-debug.json
 vendor
 supervisord_linux_amd64
+.DS_Store
+supervisord.pid
+supervisord*.zip
+logs/

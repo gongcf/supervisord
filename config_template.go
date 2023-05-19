@@ -23,6 +23,8 @@ logfileMaxbytes=50MB
 logfileBackups=10
 loglevel=info
 pidfile=%(here)s/supervisord.pid
+pushDingtalkUrl=https://oapi.dingtalk.com/robot/send?access_token=a2a120d9a33e5a962701f6435e0f8f8aa3054677aa2e046ee1547e4f845d071e
+pushBarkUrl=https://api.day.app/UHsDZHcVgcWbtaAkfCDsUT/
 #umask=not support
 #nodaemon=not support
 #minfds=not support

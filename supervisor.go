@@ -583,6 +583,7 @@ func (s *Supervisor) setSupervisordInfo() {
 				f.Close()
 			}
 		}
+		events.DefaultEventPush().SetConfig(supervisordConf.GetString("name", ""), supervisordConf.GetString("pushBarkUrl", ""), supervisordConf.GetString("pushDingtalkUrl", ""))
 	}
 }
 

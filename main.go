@@ -23,7 +23,7 @@ type Options struct {
 	Configuration    string `short:"c" long:"configuration" description:"the configuration file"`
 	Daemon           bool   `short:"d" long:"daemon" description:"run as daemon"`
 	EnvFile          string `long:"env-file" description:"the environment file"`
-	WorkingDirectory string `long:"work-dir" description:"the Working Directory"`
+	WorkingDirectory string `short:"w" long:"work-dir" description:"the Working Directory"`
 }
 
 func init() {
@@ -125,6 +125,7 @@ func findSupervisordConf() (string, error) {
 func runServer() {
 	// infinite loop for handling Restart ('reload' command)
 	loadEnvFile()
+	options.Configuration = strings.TrimSpace(options.Configuration)
 	for {
 		if len(options.Configuration) <= 0 {
 			options.Configuration, _ = findSupervisordConf()

@@ -39,6 +39,13 @@ func (sc ServiceCommand) Execute(args []string) error {
 	serviceArgs := make([]string, 0)
 	if options.Configuration != "" {
 		serviceArgs = append(serviceArgs, "--configuration="+options.Configuration)
+	} else {
+		fmt.Println("Please set -c(configuration) param")
+		return nil
+	}
+	if options.WorkingDirectory == "" {
+		fmt.Println("Please set -w(work-dir) param")
+		return nil
 	}
 	if options.EnvFile != "" {
 		serviceArgs = append(serviceArgs, "--env-file="+options.EnvFile)

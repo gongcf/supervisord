@@ -266,12 +266,13 @@ Autostart supervisord after os started. Look up supported platforms at [kardiano
 
 ```Shell
 # install
-sudo supervisord service install -c full_path_to_conf_file
+sudo supervisord service install -c /www/wwwroot/supervisord/supervisor.ini -d 工作目录
 # uninstall
 sudo supervisord service uninstall
 # start
 supervisord service start
 # stop
 supervisord service stop
-```
 
+systemctl status go-supervisord
+```
